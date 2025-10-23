@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  db:
+    image: postgres:16
+    container_name: car_insurance_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: car_insurance
+    ports:
+      - "5432:5432"
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+  adminer:
+    image: adminer
+    container_name: car_insurance_adminer
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+volumes:
+  dbdata:
